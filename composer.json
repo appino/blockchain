@@ -1,0 +1,55 @@
+{
+    "name": "appino/blockchain",
+    "description": "Blockchain API client library",
+    "keywords": [
+        "appino",
+        "blockchain"
+    ],
+    "homepage": "https://github.com/appino/blockchain",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Pouya Biglari",
+            "email": "cyberman9000@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "illuminate/support": "*",
+        "guzzlehttp/guzzle": "*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^4.0",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Appino\\Blockchain\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Appino\\Blockchain\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Appino\\Blockchain\\BlockchainServiceProvider"
+            ],
+            "aliases": {
+                "Blockchain": "Appino\\Blockchain\\BlockchainFacade"
+            }
+        }
+    }
+}
