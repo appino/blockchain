@@ -7,7 +7,6 @@ use Appino\Blockchain\Classes\Receive;
 use Appino\Blockchain\Classes\Wallet;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Psr7\Uri;
 
 class Blockchain{
 

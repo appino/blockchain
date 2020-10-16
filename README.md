@@ -5,9 +5,10 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/appino/blockchain.svg?style=flat-square)](https://scrutinizer-ci.com/g/appino/blockchain)
 [![Total Downloads](https://img.shields.io/packagist/dt/appino/blockchain.svg?style=flat-square)](https://packagist.org/packages/appino/blockchain)
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
-
+An unofficial PHP library for interacting with the blockchain.info API.
 ## Installation
+
+In order to use this package you must provide an URL to an instance of service-my-wallet-v3. Before using these functionalities.[service-my-wallet-v3](https://github.com/blockchain/service-my-wallet-v3).
 
 You can install the package via composer:
 
@@ -17,14 +18,9 @@ composer require appino/blockchain
 
 ## Usage
 
+First
 ``` php
-// Usage description here
-```
 
-### Testing
-
-``` bash
-composer test
 ```
 
 ### Changelog
