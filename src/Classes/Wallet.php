@@ -88,6 +88,17 @@ class Wallet{
     }
 
     /**
+     * Create new Address
+     * @param null|string $label
+     * @return AccountResponse
+     */
+
+    public function CreateAddress($label = null){
+        $response = $this->call('accounts/create');
+        return new AccountResponse($response);
+    }
+
+    /**
      * Get Account Balance
      *
      * @param $password string Main Wallet Password

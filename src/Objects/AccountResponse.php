@@ -2,7 +2,7 @@
 
 namespace Appino\Blockchain\Objects;
 
-use stdClass;
+use Appino\Blockchain\Objects\Cache;
 
 class AccountResponse{
     /**

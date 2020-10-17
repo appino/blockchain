@@ -1,4 +1,4 @@
-# Blockchain v1 API
+#Blockchain v1 API
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/appino/blockchain.svg?style=flat-square)](https://packagist.org/packages/appino/blockchain)
 [![Build Status](https://img.shields.io/travis/appino/blockchain/master.svg?style=flat-square)](https://travis-ci.org/appino/blockchain)
@@ -64,14 +64,22 @@ $blockchain->createWithKey($password, $privKey, $email, $label);
 $blockchain = Blockchain::Wallet();
 $blockchain->credentials($guid, $password);
 ```
-#### 1. Balance
+#### 1. Create new Address
+``` php
+/**
+ * @param null|string $label
+ * @return AccountResponse
+ */
+$blockchain->CreateAddress($label));
+```
+#### 2. Balance
 ``` php
 /**
  * @return int in satoshi
  */ 
 $blockchain->balnce();
 ```
-#### 2. Address Balance
+#### 3. Address Balance
 ``` php
 /**
  * @param int|string $param can be index of address in wallet or address
@@ -79,7 +87,7 @@ $blockchain->balnce();
  */ 
 $blockchain->AddressBallance($param);
 ```
-#### 3. Active Addresses
+#### 4. Active Addresses
 Return list of addresses of a Wallet 
 ``` php
 /**
@@ -87,7 +95,7 @@ Return list of addresses of a Wallet
  */ 
 $blockchain->ActiveAddresses();
 ```
-#### 4. List of Xpubs
+#### 5. List of Xpubs
 Return list of xpub
 ``` php
 /**
@@ -95,7 +103,7 @@ Return list of xpub
  */ 
 $blockchain->XpubList();
 ```
-#### 5. Single Address Data
+#### 6. Single Address Data
 Return Single Address Data 
 ``` php
 /**
@@ -104,7 +112,7 @@ Return Single Address Data
  */ 
 $blockchain->SingleAddress($param);
 ```
-#### 6. Get Receiving Address
+#### 7. Get Receiving Address
 Return Receiving Address
 ``` php
 /**
@@ -113,7 +121,7 @@ Return Receiving Address
  */ 
 $blockchain->ReceivingAddress($param);
 ```
-#### 7. Archive Address
+#### 8. Archive Address
 ``` php
 /**
  * @param int|string $param can be index of address in wallet or address
@@ -121,7 +129,7 @@ $blockchain->ReceivingAddress($param);
  */ 
 $blockchain->ArchiveAddress($param);
 ```
-#### 8. UnArchive Address
+#### 9. UnArchive Address
 ``` php
 /**
  * @param int|string $param can be index of address in wallet or address
@@ -129,7 +137,7 @@ $blockchain->ArchiveAddress($param);
  */ 
 $blockchain->UnArchiveAddress($param);
 ```
-#### 9. Send Payment
+#### 10. Send Payment
 ``` php
 /**
  * @param string $to bitcoin address that you want to send payment to
@@ -142,7 +150,7 @@ $blockchain->UnArchiveAddress($param);
  */
 $blockchain->SendPayment($to, $amount, $from, $fee, $fee_per_byte);
 ```
-#### 10. Send Many Payment
+#### 11. Send Many Payment
 ``` php
 /**
  * @param array<string,integer> $recipients recipients must be an array of address as key and satoshi as integer
