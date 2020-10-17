@@ -19,9 +19,27 @@ class Blockchain{
     public function __construct($config){
         $this->client = new Client(['base_uri'=>data_get($config,'base_uri')]);
         $this->params['api_code'] = data_get('api_code',null);
-        $this->Create = new Create($this);
-        $this->Wallet = new Wallet($this);
-        $this->Receive = new Receive($this);
+    }
+
+    /**
+     * @return Create
+     */
+    public function Create(){
+        return new Create($this);
+    }
+
+    /**
+     * @return Wallet
+     */
+    public function Wallet(){
+        return new Wallet($this);
+    }
+
+    /**
+     * @return Receive
+     */
+    public function Receive(){
+        return new Receive($this);
     }
 
     /**

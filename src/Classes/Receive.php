@@ -148,14 +148,18 @@ class Receive{
      * See logs related to callback attempts.
      *
      * @param $callback string
-     * @return LogResponse
+     * @return array<LogResponse>
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
 
     public function CallbackLogs($callback){
         $params = array_merge(['callback'=>$callback],$this->params);
-        $response = json_decode($this->client->get('callback_log',['query'=>$params]),true);
-        return new LogResponse($response);
+        $logs = json_decode($this->client->get('callback_log',['query'=>$params]),true);
+        $response = array();
+        foreach ($logs as $log){
+            $response[] = new LogResponse($log);
+        }
+        return $response;
     }
 
 }

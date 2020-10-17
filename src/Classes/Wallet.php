@@ -91,92 +91,96 @@ class Wallet{
      * Get Account Balance
      *
      * @param $password string Main Wallet Password
-     * @return AccountResponse
+     * @return int in satoshi
      */
 
     public function Balance(){
         $response = $this->call('balance');
-        return new AccountResponse($response);
+        return $response['balance'];
     }
 
     /**
      * Get Specific Address Balance
      *
      * @param $address string Can be Index of Address or Xpub
-     * @return AccountResponse
+     * @return int in satoshi
      */
 
-    public function Address_Ballance($address){
-        $response = $this->call('accounts/'.$address.'/balance');
-        return new AccountResponse($response);
+    public function AddressBallance($param){
+        $response = $this->call('accounts/'.$param.'/balance');
+        return $response['balance'];
     }
 
     /**
      * Get Active Wallets
-     * @return AccountResponse
+     * @return array<AccountResponse>
      */
 
-    public function ActiveWallets(){
-        $response = $this->call('accounts');
-        return new AccountResponse($response);
+    public function ActiveAddresses(){
+        $addresses = $this->call('accounts');
+        $response = array();
+        foreach ($addresses as $address){
+            $response[] = new AccountResponse($address);
+        }
+        return $response;
     }
 
     /**
      * Get Xpub List
      *
-     * @return AccountResponse
+     * @return array<string> xpub address
      */
 
     public function XpubList(){
         $response = $this->call('accounts/xpubs');
-        return new AccountResponse($response);
+        return $response;
     }
 
     /**
      * Get Single Wallet Data
      *
-     * @param $index string Can be Index of Account or Xpub Address
+     * @param $param string Can be Index of Account or Xpub Address
      * @return AccountResponse
      */
 
-    public function SingleAddress($index){
-        $response = $this->call('accounts/'.$index);
+    public function SingleAddress($param){
+        $response = $this->call('accounts/'.$param);
         return new AccountResponse($response);
     }
 
     /**
      * Get Receiving Address
      *
-     * @param $index string Can be Index of Account or Xpub Address
-     * @return AccountResponse
+     * @param $param string Can be Index of Account or Xpub Address
+     * @return string
      */
 
-    public function ReceivingAddress($index){
-        $response = $this->call('accounts/'.$index.'/receiveAddress');
-        return new AccountResponse($response);
+    public function ReceivingAddress($param){
+        $response = $this->call('accounts/'.$param.'/receiveAddress');
+        return $response['address'];
     }
 
     /**
      * Archive Wallet
      *
-     * @param $index string Can be Index of Account or Xpub Address
+     * @param $param string Can be Index of Account or Xpub Address
      * @return AccountResponse
      */
 
-    public function ArchiveAddress($index){
-        $response = $this->call('accounts/'.$index.'/archive');
+    public function ArchiveAddress($param){
+        $response = $this->call('accounts/'.$param.'/archive');
         return new AccountResponse($response);
     }
 
     /**
      * UnArchive Wallet
      *
-     * @param $index string Can be Index of Account or Xpub Address
+     * @param $param string Can be Index of Account or Xpub Address
      * @return AccountResponse
      */
 
-    public function UnArchiveAddress($index){
-        $response = $this->call('accounts/'.$index.'/unarchive');
+    public function UnArchiveAddress($param){
+        $response = $this->call('accounts/'.$param.'/unarchive');
         return new AccountResponse($response);
     }
 
