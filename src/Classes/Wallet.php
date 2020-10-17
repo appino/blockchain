@@ -8,8 +8,8 @@ use Appino\Blockchain\Blockchain;
 use Appino\Blockchain\Classes\Conversion\Conversion;
 use Appino\Blockchain\Objects\AccountResponse;
 use Appino\Blockchain\Objects\PaymentResponse;
-use Blockchain\Exception\CredentialsError;
-use Blockchain\Exception\ParameterError;
+use Appino\Blockchain\Exception\CredentialsError;
+use Appino\Blockchain\Exception\ParameterError;
 
 class Wallet{
 
@@ -204,7 +204,8 @@ class Wallet{
      * @param string $to bitcoin address that you want to send payment to
      * @param integer $amount amount of payment you want to send in satoshi
      * @param integer|string|null $from xpub address or index of account that you want to send payment from
-     * @param null $fee
+     * @param integer|null $fee
+     * @param integer|null $fee_per_byte
      * @return PaymentResponse
      * @throws ParameterError
      */

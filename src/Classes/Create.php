@@ -2,7 +2,7 @@
 namespace Appino\Blockchain\Classes;
 
 use Appino\Blockchain\Blockchain;
-use Blockchain\Exception\ParameterError;
+use Appino\Blockchain\Exception\ParameterError;
 use Appino\Blockchain\Objects\WalletResponse;
 
 class Create{

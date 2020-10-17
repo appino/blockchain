@@ -13,10 +13,7 @@ use Appino\Blockchain\Objects\ReceiveResponse;
 use GuzzleHttp\Client;
 
 class Receive{
-    /**
-     * @var Blockchain
-     */
-    private $blockchain;
+
     /**
      * @var array
      */
@@ -26,14 +23,21 @@ class Receive{
 
     /**
      * Receive constructor.
-     * @param Blockchain $blockchain
      */
 
-    public function __construct($config){
+    public function __construct(){
         $this->client = new Client(['base_uri'=>self::URL]);
         $this->params = [
             'key'=>data_get('api_code',null)
         ];
+    }
+
+    private function Get($uri,$params=array()){
+        return $this->client->get($uri,['query'=>$params])->getBody()->getContents();
+    }
+
+    private function Post($uri,$params=array()){
+        return $this->client->post($uri,['form_params'=>$params])->getBody()->getContents();
     }
 
     /**
@@ -51,7 +55,7 @@ class Receive{
             'gap_limit' => $gap_limit
         ];
         $params = array_merge($this->params, $params);
-        $response = json_decode($this->client->get('',['query'=>$params]),true);
+        $response = json_decode($this->Get('',['query'=>$params]),true);
         return new ReceiveResponse($response);
     }
 
@@ -64,7 +68,7 @@ class Receive{
      */
     public function AddressGap($xpub){
         $params = array_merge(['xpub'=>$xpub],$this->params);
-        $response = json_decode($this->client->get('checkgap',['query'=>$params]),true);
+        $response = json_decode($this->Get('checkgap',['query'=>$params]),true);
         return $response['gap'];
     }
 
@@ -90,7 +94,7 @@ class Receive{
             'op' => $op
         ];
         $params = array_merge($this->params, $params);
-        $response = json_decode($this->client->post('balance_update',['form_params'=>$params]),true);
+        $response = json_decode($this->Post('balance_update',['form_params'=>$params]),true);
         return new NotificationResponse($response);
     }
 
@@ -103,7 +107,7 @@ class Receive{
      */
 
     public function DeleteBalanceNotification($id){
-       $response = json_decode($this->client->delete('balance_update/'.$id, ['query'=>$this->params]),true);
+       $response = json_decode($this->client->delete('balance_update/'.$id, ['query'=>$this->params])->getBody()->getContents(),true);
        return $response['deleted'];
     }
 
@@ -127,7 +131,7 @@ class Receive{
         if(!is_null($height))
             $params['height'] = $height;
         $params = array_merge($this->params, $params);
-        $response = json_decode($this->client->post('block_notification',['form_params'=>$params]),true);
+        $response = json_decode($this->Post('block_notification',['form_params'=>$params]),true);
         return new NotificationResponse($response);
     }
 
@@ -140,7 +144,7 @@ class Receive{
      */
 
     public function DeleteBlockNotification($id){
-        $response = json_decode($this->client->delete('block_notification/'.$id,['query'=>$this->params]),true);
+        $response = json_decode($this->client->delete('block_notification/'.$id,['query'=>$this->params])->getBody()->getContents(),true);
         return $response['deleted'];
     }
 
@@ -154,7 +158,7 @@ class Receive{
 
     public function CallbackLogs($callback){
         $params = array_merge(['callback'=>$callback],$this->params);
-        $logs = json_decode($this->client->get('callback_log',['query'=>$params]),true);
+        $logs = json_decode($this->Get('callback_log',['query'=>$params]),true);
         $response = array();
         foreach ($logs as $log){
             $response[] = new LogResponse($log);

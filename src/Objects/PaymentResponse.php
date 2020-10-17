@@ -46,8 +46,8 @@ class PaymentResponse{
             $this->fee = data_get($json,'fee');
         if(array_key_exists('txid',$json))
             $this->txid = data_get($json,'txid');
-        if(array_key_exists('succevss',$json))
-            $this->succevss = data_get($json,'success');
+        if(array_key_exists('success',$json))
+            $this->success = data_get($json,'success');
     }
 
 }
