@@ -36,18 +36,12 @@ class PaymentResponse{
      */
 
     public function __construct($json){
-        if(array_key_exists('to',$json))
-            $this->to = data_get($json,'to');
-        if(array_key_exists('from',$json))
-            $this->from = data_get($json,'from');
-        if(array_key_exists('amount',$json))
-            $this->amount = data_get($json,'amount');
-        if(array_key_exists('fee',$json))
-            $this->fee = data_get($json,'fee');
-        if(array_key_exists('txid',$json))
-            $this->txid = data_get($json,'txid');
-        if(array_key_exists('success',$json))
-            $this->success = data_get($json,'success');
+        $this->to = data_get($json,'to');
+        $this->from = data_get($json,'from');
+        $this->amount = data_get($json,'amount');
+        $this->fee = data_get($json,'fee');
+        $this->txid = data_get($json,'txid');
+        $this->success = data_get($json,'success');
     }
 
 }
