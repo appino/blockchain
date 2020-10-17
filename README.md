@@ -1,7 +1,7 @@
 #Blockchain v1 API
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/appino/blockchain.svg?style=flat-square)](https://packagist.org/packages/appino/blockchain)
-[![Build Status](https://img.shields.io/travis/appino/blockchain/master.svg?style=flat-square)](https://travis-ci.org/appino/blockchain)
+[![Build Status](https://scrutinizer-ci.com/g/appino/Blockchain/badges/build.png?b=main)](https://scrutinizer-ci.com/g/appino/blockchain)
 [![Quality Score](https://img.shields.io/scrutinizer/g/appino/blockchain.svg?style=flat-square)](https://scrutinizer-ci.com/g/appino/blockchain)
 [![Total Downloads](https://img.shields.io/packagist/dt/appino/blockchain.svg?style=flat-square)](https://packagist.org/packages/appino/blockchain)
 
