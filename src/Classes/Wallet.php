@@ -94,6 +94,7 @@ class Wallet{
      */
 
     public function CreateAddress($label = null){
+        $params = array();
         if(!is_null($label))
             $params = ['label'=>$label];
         $response = $this->call('accounts/create',$params);

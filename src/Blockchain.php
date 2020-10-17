@@ -67,7 +67,7 @@ class Blockchain{
         );
 
         try {
-            return json_decode($this->client->request($method, $url, $options),true);
+            return json_decode($this->client->request($method, $url, $options)->getBody()->getContents(),true);
         } catch (GuzzleException $e) {
             //throw $e->getMessage();
         }
