@@ -19,16 +19,15 @@ class WalletResponse{
 
     /**
      * AccountResponse constructor.
-     * @param $json array|object
+     * @param $params array|object
      */
 
-    public function __construct($json){
-        if(array_key_exists('guid',$json))
-            $this->guid = data_get($json,'balance');
-        if(array_key_exists('address',$json))
-            $this->address = data_get($json,'address');
-        if(array_key_exists('label',$json))
-            $this->label = data_get($json,'label');
+    public function __construct($params){
+        if(is_null($params))
+            return;
+        $this->guid = data_get($params,'balance');
+        $this->address = data_get($params,'address');
+        $this->label = data_get($params,'label');
     }
 
 }

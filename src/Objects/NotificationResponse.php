@@ -13,8 +13,10 @@ class NotificationResponse{
     public $op;
     public $onNotification;
 
-    public function __construct($json){
-        foreach ($json as $key => $value){
+    public function __construct($params){
+        if(is_null($params))
+            return;
+        foreach ($params as $key => $value){
             $this->{$key} = $value;
         }
     }

@@ -32,16 +32,18 @@ class PaymentResponse{
 
     /**
      * PaymentResponse constructor.
-     * @param $json array
+     * @param $params array
      */
 
-    public function __construct($json){
-        $this->to = data_get($json,'to');
-        $this->from = data_get($json,'from');
-        $this->amount = data_get($json,'amount');
-        $this->fee = data_get($json,'fee');
-        $this->txid = data_get($json,'txid');
-        $this->success = data_get($json,'success');
+    public function __construct($params){
+        if(is_null($params))
+            return;
+        $this->to = data_get($params,'to');
+        $this->from = data_get($params,'from');
+        $this->amount = data_get($params,'amount');
+        $this->fee = data_get($params,'fee');
+        $this->txid = data_get($params,'txid');
+        $this->success = data_get($params,'success');
     }
 
 }

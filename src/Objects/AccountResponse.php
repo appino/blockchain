@@ -52,20 +52,22 @@ class AccountResponse{
 
     /**
      * AccountResponse constructor.
-     * @param $json array|object
+     * @param $params array|object
      */
 
-    public function __construct($json){
-        $this->balance = data_get($json,'balance');
-        $this->label = data_get($json,'address');
-        $this->index = data_get($json,'label');
-        $this->archived = data_get($json,'archived');
-        $this->extendedPublicKey = data_get($json,'extendedPublicKey');
-        $this->extendedPrivateKey = data_get($json,'extendedPrivateKey');
-        $this->receiveIndex = data_get($json,'receiveIndex');
-        $this->lastUsedReceiveIndex = data_get($json,'lastUsedReceiveIndex');
-        $this->receiveAddress = data_get($json,'receiveAddress');
-        $this->cahce = new Cache(data_get($json,'cache'));
+    public function __construct($params){
+        if(is_null($params))
+            return;
+        $this->balance = data_get($params,'balance');
+        $this->label = data_get($params,'address');
+        $this->index = data_get($params,'label');
+        $this->archived = data_get($params,'archived');
+        $this->extendedPublicKey = data_get($params,'extendedPublicKey');
+        $this->extendedPrivateKey = data_get($params,'extendedPrivateKey');
+        $this->receiveIndex = data_get($params,'receiveIndex');
+        $this->lastUsedReceiveIndex = data_get($params,'lastUsedReceiveIndex');
+        $this->receiveAddress = data_get($params,'receiveAddress');
+        $this->cahce = new Cache(data_get($params,'cache'));
     }
 
 }

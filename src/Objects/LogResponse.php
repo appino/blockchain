@@ -23,15 +23,13 @@ class LogResponse{
      */
     public $response_code;
 
-    public function __construct($json){
-        if(array_key_exists('callback',$json))
-            $this->callback = data_get($json,'callback');
-        if(array_key_exists('called_at',$json))
-            $this->called_at = data_get($json,'called_at');
-        if(array_key_exists('raw_response',$json))
-            $this->raw_response = data_get($json,'raw_response');
-        if(array_key_exists('response_code',$json))
-            $this->response_code = data_get($json,'response_code');
+    public function __construct($params){
+        if(is_null($params))
+            return;
+        $this->callback = data_get($params,'callback');
+        $this->called_at = data_get($params,'called_at');
+        $this->raw_response = data_get($params,'raw_response');
+        $this->response_code = data_get($params,'response_code');
     }
 
 }
