@@ -39,7 +39,7 @@ class Blockchain{
      * @return Receive
      */
     public function Receive(){
-        return new Receive($this);
+        return new Receive();
     }
 
     /**
@@ -67,7 +67,8 @@ class Blockchain{
         );
 
         try {
-            return json_decode($this->client->request($method, $url, $options)->getBody()->getContents(),true);
+
+            return json_decode($this->client->request($method, $url, $options),true);
         } catch (GuzzleException $e) {
             //throw $e->getMessage();
         }

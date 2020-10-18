@@ -10,6 +10,8 @@ use Appino\Blockchain\Objects\AccountResponse;
 use Appino\Blockchain\Objects\PaymentResponse;
 use Appino\Blockchain\Exception\CredentialsError;
 use Appino\Blockchain\Exception\ParameterError;
+use Illuminate\Contracts\Container\Container;
+use Telegram\Bot\BotsManager;
 
 class Wallet{
 
@@ -51,6 +53,7 @@ class Wallet{
     public function credentials($guid, $password){
         $this->identifier = $guid;
         $this->password = $password;
+        return $this;
     }
 
     /**
@@ -104,34 +107,33 @@ class Wallet{
     /**
      * Get Account Balance
      *
-     * @param $password string Main Wallet Password
      * @return int in satoshi
      */
 
     public function Balance(){
-        $response = $this->call('balance');
+        $response = $this->call('balance',$this->reqParams());
         return $response['balance'];
     }
 
     /**
      * Get Specific Address Balance
      *
-     * @param $address string Can be Index of Address or Xpub
+     * @param $param string Can be Index of Address or Xpub
      * @return int in satoshi
      */
 
     public function AddressBallance($param){
-        $response = $this->call('accounts/'.$param.'/balance');
+        $response = $this->call('accounts/'.$param.'/balance',$this->reqParams());
         return $response['balance'];
     }
 
     /**
      * Get Active Wallets
-     * @return array<AccountResponse>
+     * @return AccountResponse[]
      */
 
     public function ActiveAddresses(){
-        $addresses = $this->call('accounts');
+        $addresses = $this->call('accounts',$this->reqParams());
         $response = array();
         foreach ($addresses as $address){
             $response[] = new AccountResponse($address);
@@ -142,11 +144,11 @@ class Wallet{
     /**
      * Get Xpub List
      *
-     * @return array<string> xpub address
+     * @return string[] xpub address
      */
 
     public function XpubList(){
-        $response = $this->call('accounts/xpubs');
+        $response = $this->call('accounts/xpubs',$this->reqParams());
         return $response;
     }
 
@@ -158,7 +160,7 @@ class Wallet{
      */
 
     public function SingleAddress($param){
-        $response = $this->call('accounts/'.$param);
+        $response = $this->call('accounts/'.$param,$this->reqParams());
         return new AccountResponse($response);
     }
 
@@ -170,7 +172,7 @@ class Wallet{
      */
 
     public function ReceivingAddress($param){
-        $response = $this->call('accounts/'.$param.'/receiveAddress');
+        $response = $this->call('accounts/'.$param.'/receiveAddress',$this->reqParams());
         return $response['address'];
     }
 
@@ -182,7 +184,7 @@ class Wallet{
      */
 
     public function ArchiveAddress($param){
-        $response = $this->call('accounts/'.$param.'/archive');
+        $response = $this->call('accounts/'.$param.'/archive',$this->reqParams());
         return new AccountResponse($response);
     }
 
@@ -194,7 +196,7 @@ class Wallet{
      */
 
     public function UnArchiveAddress($param){
-        $response = $this->call('accounts/'.$param.'/unarchive');
+        $response = $this->call('accounts/'.$param.'/unarchive',$this->reqParams());
         return new AccountResponse($response);
     }
 
@@ -235,6 +237,8 @@ class Wallet{
      * @param integer|string|null $from xpub address or index of account that you want to send payment from
      * @param integer|null $fee must be in satoshi (better to set null or use fee_per_byte)
      * @param integer|null $fee_per_byte must be in satoshi
+     * @return PaymentResponse
+     * @throws ParameterError
      */
 
     public function SendManyPayment($recipients, $from=null, $fee=null, $fee_per_byte = null){

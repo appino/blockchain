@@ -152,7 +152,7 @@ class Receive{
      * See logs related to callback attempts.
      *
      * @param $callback string
-     * @return array<LogResponse>
+     * @return LogResponse[]
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
 
