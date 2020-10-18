@@ -23,18 +23,6 @@ class Blockchain{
     }
 
     /**
-     * Set the IoC Container.
-     *
-     * @param $container Container instance
-     *
-     * @return Blockchain
-     */
-    public function setContainer(Container $container): self{
-        $this->container = $container;
-        return $this;
-    }
-
-    /**
      * @return Create
      */
     public function Create(){
@@ -52,7 +40,7 @@ class Blockchain{
      * @return Receive
      */
     public function Receive(){
-        return new Receive($this);
+        return new Receive();
     }
 
     /**
