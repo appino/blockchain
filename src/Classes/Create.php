@@ -1,7 +1,7 @@
 <?php
 namespace Appino\Blockchain\Classes;
 
-use Appino\Blockchain\Blockchain;
+use Appino\Blockchain\Classes\Blockchain;
 use Appino\Blockchain\Exception\ParameterError;
 use Appino\Blockchain\Objects\WalletResponse;
 

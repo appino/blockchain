@@ -2,6 +2,7 @@
 
 namespace Appino\Blockchain;
 
+use Appino\Blockchain\Classes\Blockchain;
 use Appino\Blockchain\Classes\Receive;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Support\ServiceProvider;
@@ -57,11 +58,7 @@ class BlockchainServiceProvider extends ServiceProvider
         // Register the main class to use with the facade
         $this->app->singleton('blockchain', function () {
             $config = app('config')->get('blockchain');
-            return new Blockchain($config);
-        });
-        $this->app->singleton('receive', function () {
-            $config = app('config')->get('blockchain');
-            return new Receive($config);
+            return (new Blockchain($config))->setContainer($this->app);
         });
     }
 }

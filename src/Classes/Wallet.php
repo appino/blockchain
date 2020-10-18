@@ -4,14 +4,12 @@
 namespace Appino\Blockchain\Classes;
 
 
-use Appino\Blockchain\Blockchain;
+use Appino\Blockchain\Classes\Blockchain;
 use Appino\Blockchain\Classes\Conversion\Conversion;
 use Appino\Blockchain\Objects\AccountResponse;
 use Appino\Blockchain\Objects\PaymentResponse;
 use Appino\Blockchain\Exception\CredentialsError;
 use Appino\Blockchain\Exception\ParameterError;
-use Illuminate\Contracts\Container\Container;
-use Telegram\Bot\BotsManager;
 
 class Wallet{
 
@@ -87,7 +85,7 @@ class Wallet{
 
     private function call($resource, $params=array()) {
         $this->_checkCredentials();
-        return $this->blockchain->Request('post', $this->URL($resource), $this->reqParams($params));
+        return $this->blockchain->Request('POST', '/'.$this->URL($resource), $this->reqParams($params));
     }
 
     /**
@@ -107,6 +105,7 @@ class Wallet{
     /**
      * Get Account Balance
      *
+     * @param $password string Main Wallet Password
      * @return int in satoshi
      */
 
@@ -118,7 +117,7 @@ class Wallet{
     /**
      * Get Specific Address Balance
      *
-     * @param $param string Can be Index of Address or Xpub
+     * @param $address string Can be Index of Address or Xpub
      * @return int in satoshi
      */
 
@@ -132,7 +131,7 @@ class Wallet{
      * @return AccountResponse[]
      */
 
-    public function ActiveAddresses(){
+    public function ActiveAddresses() {
         $addresses = $this->call('accounts',$this->reqParams());
         $response = array();
         foreach ($addresses as $address){
@@ -237,8 +236,6 @@ class Wallet{
      * @param integer|string|null $from xpub address or index of account that you want to send payment from
      * @param integer|null $fee must be in satoshi (better to set null or use fee_per_byte)
      * @param integer|null $fee_per_byte must be in satoshi
-     * @return PaymentResponse
-     * @throws ParameterError
      */
 
     public function SendManyPayment($recipients, $from=null, $fee=null, $fee_per_byte = null){

@@ -4,7 +4,7 @@
 namespace Appino\Blockchain\Classes;
 
 
-use Appino\Blockchain\Blockchain;
+use Appino\Blockchain\Classes\Blockchain;
 use Appino\Blockchain\Interfaces\Notification;
 use Appino\Blockchain\Interfaces\Operation;
 use Appino\Blockchain\Objects\LogResponse;
@@ -152,7 +152,7 @@ class Receive{
      * See logs related to callback attempts.
      *
      * @param $callback string
-     * @return LogResponse[]
+     * @return array<LogResponse>
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
 

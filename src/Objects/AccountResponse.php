@@ -68,7 +68,4 @@ class AccountResponse{
         $this->cahce = new Cache(data_get($json,'cache'));
     }
 
-    public function __toString(){
-    }
-
 }
