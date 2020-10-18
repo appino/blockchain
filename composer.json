@@ -44,7 +44,7 @@
                 "Appino\\Blockchain\\BlockchainServiceProvider"
             ],
             "aliases": {
-                "Blockchain": "Appino\\Blockchain\\BlockchainFacade"
+                "Blockchain": "Appino\\Blockchain\\Facade\\Blockchain"
             }
         }
     }
