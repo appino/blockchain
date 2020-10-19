@@ -1,4 +1,4 @@
-#Blockchain v1 API
+# Blockchain v1 API
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/appino/blockchain.svg?style=flat-square)](https://packagist.org/packages/appino/blockchain)
 [![Build Status](https://scrutinizer-ci.com/g/appino/Blockchain/badges/build.png?b=main)](https://scrutinizer-ci.com/g/appino/blockchain)
@@ -15,15 +15,15 @@ You can install the package via composer:
 ```bash
 composer require appino/blockchain
 ```
-###Add provider to app config
+### Add provider to app config
 ``` php
 Appino\Blockchain\BlockchainServiceProvider::class
 ```
-###Publish Configuration File
+### Publish Configuration File
 ``` php
 php artisan vendor:publish --provider="Appino\blockchain\BlockchainServiceProvider"
 ```
-###Add 2 Lines to env File
+### Add 2 Lines to env File
 
 ```bash
 blockchain_api_code=123456789abcdefghijklmnop //you must get api code from blockchain.info
