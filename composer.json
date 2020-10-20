@@ -2,8 +2,7 @@
     "name": "appino/blockchain",
     "description": "Blockchain API client library",
     "keywords": [
-        "appino",
-        "blockchain"
+        "appino", "blockchain", "blockchian.info", "cryptocurrency"
     ],
     "homepage": "https://github.com/appino/blockchain",
     "license": "MIT",

@@ -24,7 +24,8 @@ class Create{
      * @throws ParameterError
      */
     public function create($password, $email=null, $label=null) {
-        return new WalletResponse($this->doCreate($password, null, $email, $label));
+        $response = $this->doCreate($password, null, $email, $label);
+        return new WalletResponse($response);
     }
 
     /**
@@ -55,11 +56,12 @@ class Create{
      * @throws ParameterError
      */
     protected function doCreate($password, $priv = null, $label = null, $email = null){
-        if(!isset($password) || is_null($password))
+        if(!isset($password) || empty($password))
             throw new ParameterError("Password required.");
 
         $params = array(
-            'password'=>$password
+            'password'=>$password,
+            'hd'=>true
         );
         if(!is_null($priv))
             $params['priv'] = $priv;

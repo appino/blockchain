@@ -4,6 +4,8 @@
 namespace Appino\Blockchain\Objects;
 
 
+use Psy\Util\Json;
+
 class LogResponse{
 
     /**
@@ -30,6 +32,15 @@ class LogResponse{
         $this->called_at = data_get($params,'called_at');
         $this->raw_response = data_get($params,'raw_response');
         $this->response_code = data_get($params,'response_code');
+    }
+
+    public function __toString(){
+        $class_vars = get_class_vars(get_class($this));
+        $response = [];
+        foreach ($class_vars as $key => $value){
+            $response[$key] = $this->{$key};
+        }
+        return Json::encode($response);
     }
 
 }

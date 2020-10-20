@@ -5,11 +5,7 @@ namespace Appino\Blockchain\Objects;
 use Appino\Blockchain\Objects\Cache;
 use Psy\Util\Json;
 
-class AccountResponse{
-    /**
-     * @var string
-     */
-    public $balance;
+class WalletAddress{
     /**
      * @var string
      */
@@ -17,31 +13,23 @@ class AccountResponse{
     /**
      * @var string
      */
-    public $index;
-    /**
-     * @var string
-     */
     public $archived;
     /**
      * @var string
      */
-    public $extendedPublicKey;
+    public $xpriv;
     /**
      * @var string
      */
-    public $extendedPrivateKey;
+    public $xpub;
     /**
-     * @var string
+     * @var array
      */
-    public $receiveIndex;
+    public $addresslabels;
     /**
-     * @var string
+     * @var Cache
      */
-    public $lastUsedReceiveIndex;
-    /**
-     * @var string
-     */
-    public $receiveAddress;
+    public $cahce;
 
     /**
      * AccountResponse constructor.
@@ -52,15 +40,12 @@ class AccountResponse{
         //echo Json::encode($params);
         if(is_null($params))
             return;
-        $this->balance = data_get($params,'balance');
         $this->label = data_get($params,'label');
-        $this->index = data_get($params,'index');
         $this->archived = data_get($params,'archived');
-        $this->extendedPublicKey = data_get($params,'extendedPublicKey');
-        $this->extendedPrivateKey = data_get($params,'extendedPrivateKey');
-        $this->receiveIndex = data_get($params,'receiveIndex');
-        $this->lastUsedReceiveIndex = data_get($params,'lastUsedReceiveIndex');
-        $this->receiveAddress = data_get($params,'receiveAddress');
+        $this->xpriv = data_get($params,'xpriv');
+        $this->xpub = data_get($params,'xpub');
+        $this->addresslabels = data_get($params,'addresslabels',array());
+        $this->cahce = new Cache(data_get($params,'cache'));
     }
 
     public function __toString(){

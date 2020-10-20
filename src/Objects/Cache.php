@@ -4,6 +4,8 @@
 namespace Appino\Blockchain\Objects;
 
 
+use Psy\Util\Json;
+
 class Cache{
 
     public $receiveAccount;
@@ -13,7 +15,16 @@ class Cache{
         if(is_null($params))
             return;
         $this->receiveAccount = data_get($params,'receiveAccount');
-        $this->changeAccount = new Cache(data_get($params,'changeAccount'));
+        $this->changeAccount = data_get($params,'changeAccount');
+    }
+
+    public function __toString(){
+        $class_vars = get_class_vars(get_class($this));
+        $response = [];
+        foreach ($class_vars as $key => $value){
+            $response[$key] = $this->{$key};
+        }
+        return Json::encode($response);
     }
 
 }

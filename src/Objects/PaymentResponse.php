@@ -4,6 +4,8 @@
 namespace Appino\Blockchain\Objects;
 
 
+use Psy\Util\Json;
+
 class PaymentResponse{
     /**
      * @var array of string
@@ -44,6 +46,15 @@ class PaymentResponse{
         $this->fee = data_get($params,'fee');
         $this->txid = data_get($params,'txid');
         $this->success = data_get($params,'success');
+    }
+
+    public function __toString(){
+        $class_vars = get_class_vars(get_class($this));
+        $response = [];
+        foreach ($class_vars as $key => $value){
+            $response[$key] = $this->{$key};
+        }
+        return Json::encode($response);
     }
 
 }

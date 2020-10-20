@@ -10,6 +10,7 @@ use Appino\Blockchain\Objects\AccountResponse;
 use Appino\Blockchain\Objects\PaymentResponse;
 use Appino\Blockchain\Exception\CredentialsError;
 use Appino\Blockchain\Exception\ParameterError;
+use Appino\Blockchain\Objects\WalletAddress;
 
 class Wallet{
 
@@ -85,7 +86,7 @@ class Wallet{
 
     private function call($resource, $params=array()) {
         $this->_checkCredentials();
-        return $this->blockchain->Request('POST', '/'.$this->URL($resource), $this->reqParams($params));
+        return $this->blockchain->Request('POST', $this->URL($resource), $this->reqParams($params));
     }
 
     /**
@@ -99,7 +100,7 @@ class Wallet{
         if(!is_null($label))
             $params = ['label'=>$label];
         $response = $this->call('accounts/create',$params);
-        return new AccountResponse($response);
+        return new WalletAddress($response);
     }
 
     /**
@@ -134,9 +135,10 @@ class Wallet{
     public function ActiveAddresses() {
         $addresses = $this->call('accounts',$this->reqParams());
         $response = array();
-        foreach ($addresses as $address){
-            $response[] = new AccountResponse($address);
-        }
+        if(!is_null($addresses))
+            foreach ($addresses as $address){
+                $response[] = new AccountResponse($address);
+            }
         return $response;
     }
 
