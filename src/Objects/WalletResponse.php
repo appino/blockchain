@@ -2,9 +2,6 @@
 
 namespace Appino\Blockchain\Objects;
 
-use Psy\Util\Json;
-use function Sodium\add;
-
 class WalletResponse{
 
     /**

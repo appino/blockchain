@@ -4,8 +4,6 @@
 namespace Appino\Blockchain\Objects;
 
 
-use Psy\Util\Json;
-
 class NotificationResponse{
     public $id;
     public $address;

@@ -2,8 +2,6 @@
 
 namespace Appino\Blockchain\Objects;
 
-use Appino\Blockchain\Objects\Cache;
-use Psy\Util\Json;
 
 class AccountResponse{
     /**
@@ -49,7 +47,6 @@ class AccountResponse{
      */
 
     public function __construct($params){
-        //echo Json::encode($params);
         if(is_null($params))
             return;
         $this->balance = data_get($params,'balance');
