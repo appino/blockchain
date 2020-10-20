@@ -33,6 +33,7 @@ class Receive{
      */
 
     public function __construct(Blockchain $blockchain){
+        $this->blockchain = $blockchain;
         $this->client = new Client(['base_uri'=>self::URL]);
         $this->params = [
             'key'=>data_get('api_code',null)

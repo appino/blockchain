@@ -92,7 +92,7 @@ class Wallet{
     /**
      * Create new Address
      * @param null|string $label
-     * @return AccountResponse
+     * @return WalletAddress
      */
 
     public function CreateAddress($label = null){
@@ -135,7 +135,7 @@ class Wallet{
     public function ActiveAddresses() {
         $addresses = $this->call('accounts',$this->reqParams());
         $response = array();
-        if(!is_null($addresses))
+        if(!empty($addresses))
             foreach ($addresses as $address){
                 $response[] = new AccountResponse($address);
             }

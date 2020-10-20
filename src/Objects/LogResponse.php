@@ -40,7 +40,7 @@ class LogResponse{
         foreach ($class_vars as $key => $value){
             $response[$key] = $this->{$key};
         }
-        return Json::encode($response);
+        return json_encode($response, JSON_THROW_ON_ERROR) ."";
     }
 
 }

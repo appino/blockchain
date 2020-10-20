@@ -8,6 +8,7 @@ use Appino\Blockchain\Classes\Wallet;
 use Appino\Blockchain\Exception\ApiError;
 use Appino\Blockchain\Exception\Error;
 use Appino\Blockchain\Exception\HttpError;
+use Appino\Blockchain\Exception\ParameterError;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Contracts\Container\Container;
@@ -77,6 +78,8 @@ class Blockchain{
                     ]
                 );
                 break;
+            default:
+                throw new ParameterError("request method not set");
         }
         try {
             $response = $this->client->request($method, $url, $options);
