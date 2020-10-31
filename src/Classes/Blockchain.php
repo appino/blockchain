@@ -24,6 +24,7 @@ class Blockchain{
     public function __construct($config){
         $this->client = new Client(['base_uri'=>data_get($config,'base_uri')]);
         $this->params['api_code'] = data_get($config,'api_code');
+        $this->params['key'] = data_get($config,'api_code');
     }
 
     /**
@@ -45,6 +46,13 @@ class Blockchain{
      */
     public function Receive(){
         return new Receive($this);
+    }
+
+    /**
+     * @return Exchange
+     */
+    public function Exchange(){
+        return new Exchange($this);
     }
 
     /**
