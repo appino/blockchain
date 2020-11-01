@@ -49,10 +49,10 @@ class Blockchain{
     }
 
     /**
-     * @return Exchange
+     * @return Market
      */
-    public function Exchange(){
-        return new Exchange($this);
+    public function Market(){
+        return new Market($this);
     }
 
     /**
