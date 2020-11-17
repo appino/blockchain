@@ -1,7 +1,7 @@
 <?php
 namespace Appino\Blockchain\Classes;
 
-use Appino\Blockchain\Classes\Blockchain;
+use Appino\Blockchain\Classes\Blockstream;
 use Appino\Blockchain\Exception\ParameterError;
 use Appino\Blockchain\Objects\WalletResponse;
 
@@ -10,7 +10,7 @@ class Create{
     protected $blockchain;
     const URL = '/api/v2/create';
 
-    public function __construct(Blockchain $blockchain){
+    public function __construct(Blockstream $blockchain){
         $this->blockchain = $blockchain;
     }
 
@@ -70,7 +70,7 @@ class Create{
         if(!is_null($label))
             $params['label'] = $label;
 
-        return $this->blockchain->Request(Blockchain::POST,self::URL,$params);
+        return $this->blockchain->Request(Blockstream::POST,self::URL,$params);
     }
 
 }

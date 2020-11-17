@@ -4,7 +4,7 @@
 namespace Appino\Blockchain\Classes;
 
 
-use Appino\Blockchain\Classes\Blockchain;
+use Appino\Blockchain\Classes\Blockstream;
 use Appino\Blockchain\Interfaces\Notification;
 use Appino\Blockchain\Interfaces\Operation;
 use Appino\Blockchain\Objects\LogResponse;
@@ -19,7 +19,7 @@ class Receive{
      */
     private $params;
     /**
-     * @var Blockchain
+     * @var Blockstream
      */
     private $blockchain;
 
@@ -29,10 +29,10 @@ class Receive{
     /**
      * Receive constructor.
      *
-     * @param Blockchain $blockchain
+     * @param Blockstream $blockchain
      */
 
-    public function __construct(Blockchain $blockchain){
+    public function __construct(Blockstream $blockchain){
         $this->blockchain = $blockchain;
     }
 

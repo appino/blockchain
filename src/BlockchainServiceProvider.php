@@ -59,7 +59,7 @@ class BlockchainServiceProvider extends ServiceProvider
         // Register the main class to use with the facade
         $this->app->singleton('blockchain', function () {
             $config = app('config')->get('blockchain');
-            return (new Blockchain($config));
+            return (new Blockstream($config));
         });
     }
 }

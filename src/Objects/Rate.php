@@ -23,4 +23,13 @@ class Rate{
         $this->symbol = data_get($params,'symbol');
     }
 
+    public function __toString(){
+        $class_vars = get_class_vars(get_class($this));
+        $response = [];
+        foreach ($class_vars as $key => $value){
+            $response[$key] = $this->{$key};
+        }
+        return json_encode($response, JSON_THROW_ON_ERROR) ."";
+    }
+
 }
