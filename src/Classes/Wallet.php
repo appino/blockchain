@@ -4,7 +4,7 @@
 namespace Appino\Blockchain\Classes;
 
 
-use Appino\Blockchain\Classes\Blockstream;
+use Appino\Blockchain\Classes\Blockchain;
 use Appino\Blockchain\Classes\Conversion\Conversion;
 use Appino\Blockchain\Objects\AccountResponse;
 use Appino\Blockchain\Objects\PaymentResponse;
@@ -27,9 +27,9 @@ class Wallet{
 
     /**
      * Wallet constructor.
-     * @param Blockstream $blockchain
+     * @param Blockchain $blockchain
      */
-    public function __construct(Blockstream $blockchain){
+    public function __construct(Blockchain $blockchain){
         $this->blockchain = $blockchain;
     }
 

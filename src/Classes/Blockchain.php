@@ -17,6 +17,7 @@ class Blockchain{
 
     protected $client;
     protected $params;
+    protected $NeedParam = false;
     public $HD = false;
     const GET = 'GET';
     const POST = 'POST';
@@ -25,6 +26,10 @@ class Blockchain{
         $this->client = new Client(['base_uri'=>data_get($config,'base_uri')]);
         $this->params['api_code'] = data_get($config,'api_code');
         $this->params['key'] = data_get($config,'api_code');
+    }
+
+    public function NeedParams($bool){
+        $this->NeedParam = $bool;
     }
 
     /**
@@ -56,6 +61,14 @@ class Blockchain{
     }
 
     /**
+     * @return Explorer
+     */
+    public function Explorer(){
+        $this->NeedParams(false);
+        return new Explorer($this);
+    }
+
+    /**
      * @param $base_uri string Default : http://localhost:3000
      */
 
@@ -72,7 +85,8 @@ class Blockchain{
      */
 
     public function Request($method, $url, $params){
-        $params = array_merge($params, $this->params);
+        if($this->NeedParam)
+            $params = array_merge($params, $this->params);
         switch ($method){
             case 'GET':
             case 'DELETE':
