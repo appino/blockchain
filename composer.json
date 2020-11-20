@@ -1,8 +1,10 @@
 {
     "name": "appino/blockchain",
+    "ver": "1.4.0",
     "description": "Blockchain API client library",
     "keywords": [
-        "appino", "blockchain", "blockchian.info", "cryptocurrency"
+        "appino",
+        "blockchian", "blockchian.info", "cryptocurrency", "bitcoin", "php", "laravel"
     ],
     "homepage": "https://github.com/appino/blockchain",
     "license": "MIT",
@@ -40,10 +42,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Appino\\Blockchain\\BlockchainServiceProvider"
+              "BlockchainServiceProvider"
             ],
             "aliases": {
-                "Blockchain": "Appino\\Blockchain\\Facade\\Blockchain"
+                "Blockchain": "Blockcvhain"
             }
         }
     }
